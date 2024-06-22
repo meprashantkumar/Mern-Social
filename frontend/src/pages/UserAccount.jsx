@@ -7,6 +7,7 @@ import axios from "axios";
 import { Loading } from "../components/Loading";
 import { UserData } from "../context/UserContext";
 import Modal from "../components/Modal";
+import { SocketData } from "../context/SocketContext";
 
 const UserAccount = ({ user: loggedInUser }) => {
   const navigate = useNavigate();
@@ -102,6 +103,8 @@ const UserAccount = ({ user: loggedInUser }) => {
   useEffect(() => {
     followData();
   }, [user]);
+
+  const { onlineUsers } = SocketData();
   return (
     <>
       {loading ? (
@@ -135,7 +138,16 @@ const UserAccount = ({ user: loggedInUser }) => {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <p className="text-gray-800 font-semibold">{user.name}</p>
+                    <p className="flex justify-center items-center text-gray-800 font-semibold">
+                      {user.name}{" "}
+                      {onlineUsers.includes(user._id) && (
+                        <div className="ml-5 ">
+                          <span className="font-bold text-green-400">
+                            Online
+                          </span>
+                        </div>
+                      )}
+                    </p>
                     <p className="text-gray-500 text-sm">{user.email}</p>
                     <p className="text-gray-500 text-sm">{user.gender}</p>
                     <p
