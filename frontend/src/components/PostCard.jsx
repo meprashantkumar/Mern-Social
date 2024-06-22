@@ -11,6 +11,7 @@ import { LoadingAnimation } from "./Loading";
 import toast from "react-hot-toast";
 import axios from "axios";
 import LikeModal from "./LikeModal";
+import { SocketData } from "../context/SocketContext";
 
 const PostCard = ({ type, value }) => {
   const [isLike, setIsLike] = useState(false);
@@ -79,6 +80,8 @@ const PostCard = ({ type, value }) => {
     setOpen(false);
   };
 
+  const { onlineUsers } = SocketData();
+
   return (
     <div className="bg-gray-100 flex items-center justify-center pt-3 pb-14">
       <SimpleModal isOpen={showModal} onClose={closeModal}>
@@ -110,6 +113,10 @@ const PostCard = ({ type, value }) => {
               alt=""
               className="w-8 h-8 rounded-full"
             />
+
+            {onlineUsers.includes(value.owner._id) && (
+              <div className="text-5xl font-bold text-green-400">.</div>
+            )}
 
             <div>
               <p className="text-gray-800 font-semibold">{value.owner.name}</p>
