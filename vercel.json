@@ -1,4 +1,3 @@
-
 {
   "version": 2,
   "name": "mern-social",
@@ -11,7 +10,7 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/dist"
+        "distDir": "frontend/build"
       }
     }
   ],
@@ -22,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
+      "dest": "/frontend/build/$1"
     }
   ]
 }
