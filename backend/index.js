@@ -8,6 +8,7 @@ import { isAuth } from "./middlewares/isAuth.js";
 import { User } from "./models/userModel.js";
 import { app, server } from "./socket/socket.js";
 import path from "path";
+import axios from 'axios';
 
 const url = `https://mern-social-3e3m.onrender.com`;
 const interval = 30000;
